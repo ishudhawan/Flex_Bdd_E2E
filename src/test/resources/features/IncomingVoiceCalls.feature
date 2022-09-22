@@ -55,7 +55,7 @@ Feature:Incoming Voice Calls
     And I validate response tag "status" with value "in-progress"
 
   @incoming-voice @api
-  Scenario: Call Transfer
+  Scenario: Call Accept and Call Transfer
     Given I click on "accept_call"
     And I force a sleep for "3" seconds
     And A different agent logs in

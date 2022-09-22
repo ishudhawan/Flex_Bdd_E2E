@@ -5,21 +5,11 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assume;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.*;
 
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -478,5 +468,15 @@ public class StepDefinitions {
     public void iMouseHoverOn(String obj) {
         Elements.mouse_hover(obj);
 
+    }
+
+    @And("I input text {string} to object {string} and press enter")
+    public void iInputTextToObjectAndPressEnter(String text, String obj) {
+        fetch_data = Elements.getVariable(text);
+        if (fetch_data != null) {
+            Elements.inputAndPressEnter(fetch_data, obj);
+        } else {
+            Elements.inputAndPressEnter(text, obj);
+        }
     }
 }

@@ -144,15 +144,18 @@ public class Elements {
             element.sendKeys("idhawan+11@twilio.com");
             element = PathAndVariable.driver2.findElement(By.xpath(PathAndVariable.prop.getProperty("password")));
             element.sendKeys("testdemo");
+            Browser.take_screenshot("signin");
             element = PathAndVariable.driver2.findElement(By.xpath(PathAndVariable.prop.getProperty("signin")));
             element.click();
             res = PathAndVariable.prop.getProperty("offline");
             w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(res)));
             element = PathAndVariable.driver2.findElement(By.xpath(PathAndVariable.prop.getProperty("offline")));
             element.click();
+            Browser.take_screenshot("offline");
             element = PathAndVariable.driver2.findElement(By.xpath(PathAndVariable.prop.getProperty("available")));
             element.click();
             element = PathAndVariable.driver2.findElement(By.xpath(PathAndVariable.prop.getProperty("close_notification")));
+            Browser.take_screenshot("available");
             element.click();
         } catch (Exception e) {
             PathAndVariable.error = "The agent was unable to login";
@@ -181,11 +184,13 @@ public class Elements {
             String res = PathAndVariable.prop.getProperty("hang_up");
             w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(res)));
             Thread.sleep(3000);
+            Browser.take_screenshot("hang_up");
             element = PathAndVariable.driver2.findElement(By.xpath(PathAndVariable.prop.getProperty("hang_up")));
             element.click();
             res = PathAndVariable.prop.getProperty("complete_call");
             w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(res)));
             Thread.sleep(3000);
+            Browser.take_screenshot("complete_call");
             element = PathAndVariable.driver2.findElement(By.xpath(PathAndVariable.prop.getProperty("complete_call")));
             element.click();
             Thread.sleep(3000);
