@@ -61,7 +61,7 @@ public class StepDefinitions {
             status = "Pass";
         }
         Log4j2Config.logger.info("=============================================================================================================================");
-        Log4j2Config.logger.info("                                      Feature << " + scenario.getUri().toString().split("/")[12].split(".feature")[0].toUpperCase() + " >> execution started");
+        Log4j2Config.logger.info("                                      Feature << " + scenario.getUri().toString().split("/")[12].split(".feature")[0] + " >> execution started");
         Log4j2Config.logger.info("=============================================================================================================================\n");
         Log4j2Config.logger.info("                                   Scenario << " + scenario.getName() + " >> execution started");
         Log4j2Config.logger.info("=============================================================================================================================\n");
@@ -93,7 +93,7 @@ public class StepDefinitions {
         indexSI++;
 //        status = "Pass";
         Log4j2Config.logger.info("=============================================================================================================================\n");
-        Log4j2Config.logger.info("                                      Feature << " + scenario.getUri().toString().split("/")[12].split(".feature")[0].toUpperCase() + " >> execution ended");
+        Log4j2Config.logger.info("                                      Feature << " + scenario.getUri().toString().split("/")[12].split(".feature")[0] + " >> execution ended");
         PathAndVariable.saving_all_details.get(PathAndVariable.scenario).put("Index", String.valueOf(indexSI));
         PathAndVariable.saving_all_details.get(PathAndVariable.scenario).put("Feature", PathAndVariable.feature.toUpperCase());
         PathAndVariable.saving_all_details.get(PathAndVariable.scenario).put("Status", status);
