@@ -16,9 +16,6 @@ Feature:Incoming Voice Calls
     Given I open the web window
     And I open the url "flex"
     And I open the url "flex"
-#    And I wait for "runtimedomain"
-#    And I input text "fruby-rabbit-5975" to object "runtimedomain"
-#    And I click on "launch"
     And I wait for "username"
     And I input text "idhawan+1@twilio.com" to object "username"
     And I input text "testdemo" to object "password"
@@ -36,7 +33,6 @@ Feature:Incoming Voice Calls
     Given I set api with URL "twilio"
     And I add service "make_call" with URL and replace "account" to set API endpoint
     And I get authentication username "username" and password "password" for API authentication
-#    And I add body param "To,From,Twiml" with value "+12018440895,From,<Response><Dial>+12018440895</Dial></Response>" in API
     And I add body param "To,From,Method,Url" with value "To,From,GET,http://demo.twilio.com/docs/voice.xml" in API
     And I hit "JSON POST" api with API endpoint and request body
     And I save response status to variable "Response_status" and response body to variable "Response_body"
@@ -57,7 +53,7 @@ Feature:Incoming Voice Calls
   @incoming-voice @api
   Scenario: Call Accept and Call Transfer
     Given I click on "accept_call"
-    And I force a sleep for "3" seconds
+    And I force a sleep for "10" seconds
     And A different agent logs in
     And I force a sleep for "3" seconds
     And I wait for "transfer_call"
