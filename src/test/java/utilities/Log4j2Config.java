@@ -1,0 +1,63 @@
+package utilities;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.Appender;
+import org.apache.logging.log4j.core.Layout;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.appender.FileAppender;
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.LoggerConfig;
+import org.apache.logging.log4j.core.layout.PatternLayout;
+
+import java.io.Serializable;
+public class Log4j2Config {
+
+    public static final Logger logger = LogManager.getLogger(Log4j2Config.class);
+
+    public Log4j2Config() {
+        String patternLayout;
+        LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+        Configuration config = ctx.getConfiguration();
+        patternLayout = "%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level" + " - %msg%n";
+        Layout<? extends Serializable> layout = PatternLayout.newBuilder()
+                .withPattern(patternLayout)
+                .build();
+
+        Appender appender = FileAppender.newBuilder()  //---creating the Appender
+                .withName("LogFile")
+                .withFileName(PathAndVariable.log_name + "/" + PathAndVariable.tags.split("@")[1] + ".log")
+                .withAppend(false)
+                .withImmediateFlush(false)
+                .withLayout(layout)
+                .build();
+        appender.start();
+        config.addAppender(appender);
+    }
+
+    public void activeLoggerConsole(boolean state) {  //Remove or Add Console Logger
+        LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+        Configuration config = ctx.getConfiguration();
+        LoggerConfig loggerConfig = config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME);
+        if (!state) {
+            loggerConfig.removeAppender("Console");
+        } else {
+            Appender appender = config.getAppender("Console");
+            loggerConfig.addAppender(appender, null, null);
+        }
+        ctx.updateLoggers();
+    }
+
+    public void activeLoggerLogFile(boolean state) {        //Remove or Add LogFile Logger
+        LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+        Configuration config = ctx.getConfiguration();
+        LoggerConfig loggerConfig = config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME);
+        if (!state) {
+            loggerConfig.removeAppender("LogFile");
+        } else {
+            Appender appender = config.getAppender("LogFile");
+            loggerConfig.addAppender(appender, null, null);
+        }
+        ctx.updateLoggers();
+    }
+}
