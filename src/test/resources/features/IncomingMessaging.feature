@@ -15,7 +15,6 @@ Feature:Incoming Messaging
   Scenario: Making agent available
     Given I open the web window
     And I open the url "flex"
-    And I open the url "flex"
     And I wait for "username"
     And I input text "idhawan+1@twilio.com" to object "username"
     And I input text "testdemo" to object "password"
@@ -47,14 +46,14 @@ Feature:Incoming Messaging
     And I wait for "text_area"
     And I force a sleep for "3" seconds
     And I input text "Hi, Please let me know your concern" to object "text_area" and press enter
-#    And I wait for "end_chat"
-#    And I force a sleep for "3" seconds
-#    And I click on "end_chat"
-#    And I wait for "complete_call"
-#    And I force a sleep for "3" seconds
-#    And I click on "complete_call"
-#    And I force a sleep for "3" seconds
-#    And I close all browsers
+    And I wait for "end_chat"
+    And I force a sleep for "3" seconds
+    And I click on "end_chat"
+    And I wait for "complete_call"
+    And I force a sleep for "3" seconds
+    And I click on "complete_call"
+    And I force a sleep for "3" seconds
+    And I close all browsers
 
 
   @message

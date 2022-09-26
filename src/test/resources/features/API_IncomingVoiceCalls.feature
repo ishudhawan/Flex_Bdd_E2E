@@ -35,8 +35,8 @@ Feature:Incoming Voice Calls only from API
     And I validate response tag "status" with value "<status>"
 
     Examples:
-      | status      | sleep |
-      | in-progress | 1     |
-      | completed   |10     |
+      | status    | sleep |
+      | ringing   | 1     |
+      | completed | 10    |
 
 

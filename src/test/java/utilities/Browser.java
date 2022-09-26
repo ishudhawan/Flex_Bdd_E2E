@@ -29,6 +29,7 @@ public class Browser {
         save_in_map("Error", error);
         take_screenshot("Error");
         StepDefinitions.status = "Fail";
+        StepDefinitions.feature_check = 1;
         close();
         Assume.assumeTrue(false);
     }
@@ -147,7 +148,7 @@ public class Browser {
                 DateFormat dateFormat2 = new SimpleDateFormat("HH-mm-ss");
                 String timestamp = dateFormat2.format(date);
                 screenshot_name = PathAndVariable.screenshot_name + timestamp + spcl + name
-                            + spcl + PathAndVariable.scenario + spcl + PathAndVariable.random_value + extension;
+                        + spcl + PathAndVariable.scenario + spcl + PathAndVariable.random_value + extension;
                 TakesScreenshot scrShot = ((TakesScreenshot) PathAndVariable.driver);
                 File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
                 File DestFile = new File(screenshot_name);
@@ -158,7 +159,27 @@ public class Browser {
                 }
             }
         } catch (Exception e) {
-            Browser.generate_logs("Error", "Unable to take screenshot", name);
+            try {
+                if (PathAndVariable.driver2 != null) {
+                    String extension = ".png";
+                    String spcl = "--";
+                    Date date = new Date();
+                    DateFormat dateFormat2 = new SimpleDateFormat("HH-mm-ss");
+                    String timestamp = dateFormat2.format(date);
+                    screenshot_name = PathAndVariable.screenshot_name + timestamp + spcl + name
+                            + spcl + PathAndVariable.scenario + spcl + PathAndVariable.random_value + extension;
+                    TakesScreenshot scrShot = ((TakesScreenshot) PathAndVariable.driver);
+                    File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+                    File DestFile = new File(screenshot_name);
+                    FileUtils.copyFile(SrcFile, DestFile);
+                    if (name.equalsIgnoreCase("Error")) {
+                        isScreenShotAttach = true;
+                        errorScreenShot_name.add(screenshot_name);
+                    }
+                }
+            } catch (Exception ex) {
+                Browser.generate_logs("Error", "Unable to take screenshot", name);
+            }
         }
     }
 }

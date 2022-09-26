@@ -16,19 +16,29 @@ public class Mail {
     public void sendMail() {
 
         String to = PathAndVariable.email;
-        String from = "idhawan@twilio.com";
-        String host = "";
+        String from = "durejaishu@gmail.com";
+        String host = "smtp.gmail.com";
         Properties properties = System.getProperties();
-
         properties.setProperty("mail.smtp.host", host);
+        properties.setProperty("mail.smtp.port", "465");
+        properties.setProperty("mail.smtp.ssl.enable", "true");
+        properties.setProperty("mail.smtp.auth", "true");
+        properties.setProperty("mail.smtp.starttls.enable", "true");
+        properties.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+        properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
-        Session session = Session.getDefaultInstance(properties);
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(from, "");
+            }
+        });
+        session.setDebug(true);
         try {
 
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            String filename = PathAndVariable.report_Name + "/" + PathAndVariable.tags + ".zip";
+            String filename = PathAndVariable.report_Name + "/" + PathAndVariable.tags.split("@")[1] + ".zip";
             String[] arr = filename.split("/");
             message.setSubject("Result for " + PathAndVariable.tags);
             BodyPart messageBodyPart1 = new MimeBodyPart();
@@ -37,7 +47,7 @@ public class Mail {
             DataSource source = new FileDataSource(filename);
             messageBodyPart2.setDataHandler(new DataHandler(source));
             messageBodyPart2.setFileName(arr[arr.length - 1]);
-            String logFileName = PathAndVariable.log_name + "/" + PathAndVariable.tags + ".txt";
+            String logFileName = PathAndVariable.log_name + "/" + PathAndVariable.tags.split("@")[1] + ".log";
             String[] logArr = logFileName.split("/");
             Log4j2Config.logger.info("log file path.    "+logFileName);
             MimeBodyPart attachmentPart = new MimeBodyPart();

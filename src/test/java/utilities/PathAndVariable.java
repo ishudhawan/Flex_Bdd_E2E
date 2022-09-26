@@ -96,10 +96,6 @@ public class PathAndVariable {
             if (!theDir.exists()) {
                 file = theDir.mkdirs();
             }
-            theDir = new File(PathAndVariable.parent + "/CSVFiles/");
-            if (!theDir.exists()) {
-                file = theDir.mkdirs();
-            }
             PathAndVariable.Downloads = PathAndVariable.parent + "/Downloads/";
             theDir = new File(PathAndVariable.Downloads);
             if (!theDir.exists()) {
@@ -109,6 +105,5 @@ public class PathAndVariable {
             Log4j2Config.logger.info("Error in folders creation");
             Assume.assumeTrue(false);
         }
-
     }
 }
