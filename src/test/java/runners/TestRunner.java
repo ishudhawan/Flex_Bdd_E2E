@@ -19,7 +19,7 @@ import java.util.Arrays;
         plugin = {"pretty"},
         features = {"src/test/resources/features"},
         glue = {"stepdefinitions"},
-        tags = "@api",
+        tags = "@api1",
         monochrome = true)
 
 public class TestRunner extends AbstractTestNGCucumberTests {

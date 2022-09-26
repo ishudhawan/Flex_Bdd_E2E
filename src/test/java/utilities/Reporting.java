@@ -19,7 +19,7 @@ public class Reporting {
             List<String> jsonFiles = new ArrayList<>();
             jsonFiles.add("target/cucumber.json");
             String buildNumber = "1";
-            String projectName = "PrepaidFramework";
+            String projectName = "Flex E2E";
             Configuration configuration = new Configuration(reportOutputDirectory, projectName);
             configuration.setNotFailingStatuses(Collections.singleton(Status.SKIPPED));
             configuration.setBuildNumber(buildNumber);
