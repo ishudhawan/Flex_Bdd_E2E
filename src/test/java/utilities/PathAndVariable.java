@@ -77,24 +77,24 @@ public class PathAndVariable {
             } else {
                 folder = "TestRun";
             }
-            System.out.println(PathAndVariable.parent);
-            PathAndVariable.screenshot_name = PathAndVariable.parent + '/' + "screenshots_" + folder + '/' +
-                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
-            PathAndVariable.log_name = PathAndVariable.parent + '/' + "Logs_" + folder + '/' +
-                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
-            theDir = new File(PathAndVariable.screenshot_name);
+//            System.out.println(PathAndVariable.parent);
+//            PathAndVariable.screenshot_name = PathAndVariable.parent + '/' + "screenshots_" + folder + '/' +
+//                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
+//            PathAndVariable.log_name = PathAndVariable.parent + '/' + "Logs_" + folder + '/' +
+//                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
+//            theDir = new File(PathAndVariable.screenshot_name);
 //            System.out.println(PathAndVariable.log_name);
 //            PathAndVariable.report_Name = PathAndVariable.parent + '/' + "Reports_" + folder + '/' +
 //                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
-            PathAndVariable.screenshot_name = PathAndVariable.screenshot_name + '/';
-
-            if (!theDir.exists()) {
-                file = theDir.mkdirs();
-            }
-            theDir = new File(PathAndVariable.log_name);
-            if (!theDir.exists()) {
-                file = theDir.mkdirs();
-            }
+//            PathAndVariable.screenshot_name = PathAndVariable.screenshot_name + '/';
+//
+//            if (!theDir.exists()) {
+//                file = theDir.mkdirs();
+//            }
+//            theDir = new File(PathAndVariable.log_name);
+//            if (!theDir.exists()) {
+//                file = theDir.mkdirs();
+//            }
 //            theDir = new File(PathAndVariable.report_Name);
 //            if (!theDir.exists()) {
 //                file = theDir.mkdirs();
