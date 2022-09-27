@@ -85,22 +85,22 @@ public class PathAndVariable {
             PathAndVariable.report_Name = PathAndVariable.parent + '/' + "Reports_" + folder + '/' +
                     PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
             PathAndVariable.screenshot_name = PathAndVariable.screenshot_name + '/';
-            if (!theDir.exists()) {
-                file = theDir.mkdirs();
-            }
-            theDir = new File(PathAndVariable.log_name);
-            if (!theDir.exists()) {
-                file = theDir.mkdirs();
-            }
-            theDir = new File(PathAndVariable.report_Name);
-            if (!theDir.exists()) {
-                file = theDir.mkdirs();
-            }
-            PathAndVariable.Downloads = PathAndVariable.parent + "/Downloads/";
-            theDir = new File(PathAndVariable.Downloads);
-            if (!theDir.exists()) {
-                file = theDir.mkdirs();
-            }
+//            if (!theDir.exists()) {
+//                file = theDir.mkdirs();
+//            }
+//            theDir = new File(PathAndVariable.log_name);
+//            if (!theDir.exists()) {
+//                file = theDir.mkdirs();
+//            }
+//            theDir = new File(PathAndVariable.report_Name);
+//            if (!theDir.exists()) {
+//                file = theDir.mkdirs();
+//            }
+//            PathAndVariable.Downloads = PathAndVariable.parent + "/Downloads/";
+//            theDir = new File(PathAndVariable.Downloads);
+//            if (!theDir.exists()) {
+//                file = theDir.mkdirs();
+//            }
         } catch (Exception e) {
             Log4j2Config.logger.info("Error in folders creation");
             Assume.assumeTrue(false);
