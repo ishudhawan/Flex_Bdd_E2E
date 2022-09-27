@@ -3,23 +3,20 @@ package runners;
 
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.*;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 import stepdefinitions.StepDefinitions;
 import utilities.Log4j2Config;
 import utilities.Mail;
 import utilities.PathAndVariable;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.DataProvider;
 import utilities.Reporting;
 
-import java.util.Arrays;
-
 @CucumberOptions(
-        plugin = {"pretty"},
+        plugin = {"pretty",
+                "html:target/cucumber-reports/cucumber-pretty",
+                "json:target/cucumber.json"},
         features = {"src/test/resources/features"},
         glue = {"stepdefinitions"},
-        tags = "@api1",
+        tags = "@api",
         monochrome = true)
 
 public class TestRunner extends AbstractTestNGCucumberTests {
@@ -37,6 +34,6 @@ public class TestRunner extends AbstractTestNGCucumberTests {
 //            if (PathAndVariable.Telegram.equalsIgnoreCase("Yes")) {
 //                Telegram.send_file();
 //            }
-            new Mail().sendMail();
+//            new Mail().sendMail();
         }
 }

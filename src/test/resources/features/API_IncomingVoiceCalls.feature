@@ -23,7 +23,7 @@ Feature:Incoming Voice Calls only from API
     And I validate response tag "status" with value "queued"
     And I save value in "JSON" response tag "sid" to variable "sid"
 
-  @incoming-voice-api @api1
+  @incoming-voice-api @api11
   Scenario Outline: To check for <status> status for Outgoing Voice Call
     Given I set api with URL "twilio"
     And I force a sleep for "<sleep>" seconds

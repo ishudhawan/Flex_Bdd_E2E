@@ -3,6 +3,8 @@ package utilities;
 import net.masterthought.cucumber.Configuration;
 import net.masterthought.cucumber.ReportBuilder;
 import net.masterthought.cucumber.json.support.Status;
+import net.masterthought.cucumber.presentation.PresentationMode;
+import net.masterthought.cucumber.sorting.SortingMethod;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
