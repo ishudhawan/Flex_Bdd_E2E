@@ -7,7 +7,7 @@ import stepdefinitions.StepDefinitions;
 import utilities.Log4j2Config;
 import utilities.Mail;
 import utilities.PathAndVariable;
-import org.testng.annotations.AfterClass;
+//import org.testng.annotations.AfterClass;
 import utilities.Reporting;
 
 @CucumberOptions(
@@ -20,20 +20,20 @@ import utilities.Reporting;
         monochrome = true)
 
 public class TestRunner extends AbstractTestNGCucumberTests {
-    public TestNGCucumberRunner testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
-        @AfterClass(alwaysRun = true)
-        public void tearDownClass() {
-            testNGCucumberRunner.finish();
-            StepDefinitions.feature_check = 0;
-            StepDefinitions.initialize = 0;
-            Log4j2Config.logger.info("=========================================================================================================================================================================");
-            Log4j2Config.logger.info("                                      Feature << " + PathAndVariable.feature.toUpperCase() + " >> execution ended");
-            Log4j2Config.logger.info("=========================================================================================================================================================================\n\n");
-            PathAndVariable.feature = "";
-            new Reporting().configureReport();
+//    public TestNGCucumberRunner testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+//        @AfterClass(alwaysRun = true)
+//        public void tearDownClass() {
+//            testNGCucumberRunner.finish();
+//            StepDefinitions.feature_check = 0;
+//            StepDefinitions.initialize = 0;
+//            Log4j2Config.logger.info("=========================================================================================================================================================================");
+//            Log4j2Config.logger.info("                                      Feature << " + PathAndVariable.feature.toUpperCase() + " >> execution ended");
+//            Log4j2Config.logger.info("=========================================================================================================================================================================\n\n");
+//            PathAndVariable.feature = "";
+//            new Reporting().configureReport();
 //            if (PathAndVariable.Telegram.equalsIgnoreCase("Yes")) {
 //                Telegram.send_file();
 //            }
 //            new Mail().sendMail();
-        }
+//        }
 }
