@@ -69,6 +69,8 @@ public class PathAndVariable {
         try {
             File theDir;
             boolean file = false;
+            System.out.println(path);
+            System.out.println(PathAndVariable.parent);
             String folder;
             if (PathAndVariable.tags.toLowerCase().contains("regression")) {
                 folder = "Regression";
