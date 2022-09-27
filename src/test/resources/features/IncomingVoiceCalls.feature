@@ -3,7 +3,6 @@ Feature:Incoming Voice Calls
   @incoming-voice @api
   Scenario: Find available phone numbers API
     Given I set api with URL "twilio"
-    And I send the mail
     And I add service "available_phone" with URL and replace "account" to set API endpoint
     And I get authentication username "username" and password "password" for API authentication
     And I hit "JSON GET" api with API endpoint and request body
