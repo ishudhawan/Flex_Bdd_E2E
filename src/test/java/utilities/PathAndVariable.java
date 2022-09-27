@@ -77,6 +77,7 @@ public class PathAndVariable {
             } else {
                 folder = "TestRun";
             }
+            System.out.println(PathAndVariable.parent);
             PathAndVariable.screenshot_name = PathAndVariable.parent + '/' + "screenshots_" + folder + '/' +
                     PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
             PathAndVariable.log_name = PathAndVariable.parent + '/' + "Logs_" + folder + '/' +
