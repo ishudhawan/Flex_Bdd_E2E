@@ -69,8 +69,7 @@ public class PathAndVariable {
         try {
             File theDir;
             boolean file = false;
-            System.out.println(path);
-            System.out.println(PathAndVariable.parent);
+            System.out.println(PathAndVariable.date1);
             String folder;
             if (PathAndVariable.tags.toLowerCase().contains("regression")) {
                 folder = "Regression";
@@ -79,7 +78,7 @@ public class PathAndVariable {
             } else {
                 folder = "TestRun";
             }
-            System.out.println(folder);
+            System.out.println(PathAndVariable.parent + '/' + "screenshots_" + folder + '/' );
             PathAndVariable.screenshot_name = PathAndVariable.parent + '/' + "screenshots_" + folder + '/' +
                     PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
             PathAndVariable.log_name = PathAndVariable.parent + '/' + "Logs_" + folder + '/' +
