@@ -36,7 +36,7 @@ public class StepDefinitions {
         PathAndVariable.scenario = scenario.getName();
         PathAndVariable.scenario_name = scenario;
         if (initialize == 0) {
-            PathAndVariable.tags = System.getProperty("tags");
+            PathAndVariable.tags = System.getProperty("cucumber.filter.tags");
             PathAndVariable.error = "No error";
             PathAndVariable.env = System.getProperty("env");
             PathAndVariable.slack = System.getProperty("Slack");
