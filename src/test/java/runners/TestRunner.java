@@ -1,10 +1,9 @@
 package runners;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
 
-@RunWith(Cucumber.class)
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.testng.*;
+
 @CucumberOptions(
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber-pretty",
@@ -15,7 +14,7 @@ import org.junit.runner.RunWith;
         tags = "@api",
         monochrome = true)
 
-public class TestRunner{
+public class TestRunner extends AbstractTestNGCucumberTests {
 //    public TestNGCucumberRunner testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 //        @AfterClass(alwaysRun = true)
 //        public void tearDownClass() {
