@@ -14,7 +14,6 @@ import utilities.PathAndVariable;
                 "com.epam.reportportal.cucumber.ScenarioReporter"},
         features = {"src/test/resources/features"},
         glue = {"stepdefinitions"},
-        tags = "@api1",
         monochrome = true)
 
 public class TestRunner extends AbstractTestNGCucumberTests {
