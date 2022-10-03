@@ -48,7 +48,6 @@ public class StepDefinitions {
                 PathAndVariable.tags = "Test run";
             PathAndVariable.path_creation();
         }
-        System.setProperty("logfilename", PathAndVariable.log_name + "/" + PathAndVariable.tags.split("@")[1]);
         PathAndVariable.params = null;
         PathAndVariable.api_username = null;
         PathAndVariable.saving_all_details.put(PathAndVariable.scenario, new HashMap<>());
