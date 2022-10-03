@@ -13,10 +13,11 @@ import utilities.Reporting;
 @CucumberOptions(
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber-pretty",
-                "json:target/cucumber.json"},
+                "json:target/cucumber.json",
+                "com.epam.reportportal.cucumber.ScenarioReporter"},
         features = {"src/test/resources/features"},
         glue = {"stepdefinitions"},
-        tags = "@api",
+        tags = "@api1",
         monochrome = true)
 
 public class TestRunner extends AbstractTestNGCucumberTests {
