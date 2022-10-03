@@ -118,13 +118,13 @@ public class StepDefinitions {
         switch (status) {
             case "Fail":
                 PathAndVariable.saving_all_details.get(PathAndVariable.scenario).put("Status", "Fail");
-                new Reporting().updateResult(PathAndVariable.scenario, indexSI, PathAndVariable.feature, "Fail", PathAndVariable.error);
+//                new Reporting().updateResult(PathAndVariable.scenario, indexSI, PathAndVariable.feature, "Fail", PathAndVariable.error);
                 break;
             case "Pass":
-                new Reporting().updateResult(PathAndVariable.scenario, indexSI, PathAndVariable.feature, "Pass", PathAndVariable.error);
+//                new Reporting().updateResult(PathAndVariable.scenario, indexSI, PathAndVariable.feature, "Pass", PathAndVariable.error);
                 break;
             case "Skip":
-                new Reporting().updateResult(PathAndVariable.scenario, indexSI, PathAndVariable.feature, "Skip", PathAndVariable.error);
+//                new Reporting().updateResult(PathAndVariable.scenario, indexSI, PathAndVariable.feature, "Skip", PathAndVariable.error);
                 break;
         }
     }
@@ -494,9 +494,4 @@ public class StepDefinitions {
             Elements.inputAndPressEnter(text, obj);
         }
     }
-
-    @And("I send the mail")
-    public void iSendTheMail() {
-        new Mail().sendMail();
-        }
 }
