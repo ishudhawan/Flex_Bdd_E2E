@@ -1,9 +1,6 @@
 package utilities;
 
 import io.cucumber.java.Scenario;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.*;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.junit.Assume;
 import org.openqa.selenium.WebDriver;
 import stepdefinitions.StepDefinitions;
@@ -19,7 +16,6 @@ public class PathAndVariable {
     public static String scenario = null;
     public static HashMap<String, String> variables = new HashMap<>();
     public static HashMap<String, String> form_params = new HashMap<>();
-    public static LinkedHashMap<String, String> data = new LinkedHashMap<>();
     public static String statusCode;
     public static String message;
     public static String params = null;
@@ -68,18 +64,18 @@ public class PathAndVariable {
     public static String api_value;
     public static String encryptedPin;
 
-    public static void path_creation() {
-        try {
-            File theDir;
-            boolean file = false;
-            String folder;
-            if (PathAndVariable.tags.toLowerCase().contains("regression")) {
-                folder = "Regression";
-            } else if (PathAndVariable.tags.toLowerCase().contains("sanity")) {
-                folder = "Sanity";
-            } else {
-                folder = "TestRun";
-            }
+//    public static void path_creation() {
+//        try {
+//            File theDir;
+//            boolean file = false;
+//            String folder;
+//            if (PathAndVariable.tags.toLowerCase().contains("regression")) {
+//                folder = "Regression";
+//            } else if (PathAndVariable.tags.toLowerCase().contains("sanity")) {
+//                folder = "Sanity";
+//            } else {
+//                folder = "TestRun";
+//            }
 //            PathAndVariable.screenshot_name = PathAndVariable.parent + '/' + "screenshots_" + folder + '/' +
 //                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
 //            PathAndVariable.log_name = PathAndVariable.parent + '/' + "Logs_" + folder + '/' +
@@ -105,9 +101,9 @@ public class PathAndVariable {
 //            if (!theDir.exists()) {
 //                file = theDir.mkdirs();
 //            }
-        } catch (Exception e) {
-            StepDefinitions.LOGGER.info("Error in folders creation");
-            Assume.assumeTrue(false);
-        }
-    }
+//        } catch (Exception e) {
+//            StepDefinitions.LOGGER.info("Error in folders creation");
+//            Assume.assumeTrue(false);
+//        }
+//    }
 }

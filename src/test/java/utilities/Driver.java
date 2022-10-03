@@ -5,7 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 public class Driver {
 
@@ -26,8 +25,7 @@ public class Driver {
             PathAndVariable.driver.manage().window().maximize();
             Browser.generate_logs("Info", "ChromeDriver instance created " + PathAndVariable.driver, "");
             Browser.take_screenshot("Browser");
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }

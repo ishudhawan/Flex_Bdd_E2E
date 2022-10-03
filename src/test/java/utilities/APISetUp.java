@@ -4,7 +4,6 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import org.apache.http.client.methods.*;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -53,8 +52,7 @@ public class APISetUp {
                             PathAndVariable.service = PathAndVariable.service.replace("$account", user);
                             PathAndVariable.endpoint = PathAndVariable.endpoint.replace("$account", user);
                         }
-                    }
-                    else {
+                    } else {
                         String fetch_data = Elements.getVariable(s);
                         if (fetch_data != null) {
                             if (PathAndVariable.endpoint.isEmpty()) {
@@ -99,24 +97,23 @@ public class APISetUp {
             Browser.generate_error(PathAndVariable.error);
         }
     }
+
     public static RequestSpecification request_spec(String type, String auth) {
-        if (type.contains("post") || type.contains("put")){
+        if (type.contains("post") || type.contains("put")) {
             return new RequestSpecBuilder().
                     setBaseUri(PathAndVariable.url).
                     addHeader("Authorization", auth).
                     setContentType(ContentType.fromContentType("application/x-www-form-urlencoded")).
                     log(LogDetail.ALL).
                     build();
-        }
-        else if (type.contains("get")){
+        } else if (type.contains("get")) {
             return new RequestSpecBuilder().
                     setBaseUri(PathAndVariable.url).
                     addHeader("Authorization", PathAndVariable.basic_auth).
 //                    setContentType(ContentType.fromContentType("application/x-www-form-urlencoded")).
-                    log(LogDetail.ALL).
+        log(LogDetail.ALL).
                     build();
-        }
-        else{
+        } else {
             return null;
         }
     }

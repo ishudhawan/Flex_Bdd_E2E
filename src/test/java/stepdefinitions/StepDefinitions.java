@@ -9,6 +9,7 @@ import org.junit.Assume;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utilities.*;
+
 import java.io.File;
 
 import java.io.IOException;
@@ -47,15 +48,15 @@ public class StepDefinitions {
             }
             if (PathAndVariable.tags == null)
                 PathAndVariable.tags = "Test run";
-            PathAndVariable.path_creation();
+//            PathAndVariable.path_creation();
         }
         PathAndVariable.params = null;
         PathAndVariable.api_username = null;
         PathAndVariable.saving_all_details.put(PathAndVariable.scenario, new HashMap<>());
-        int start=scenario.getUri().toString().indexOf(File.separator+"features"+File.separator);
-        int end=scenario.getUri().toString().indexOf(".");
+        int start = scenario.getUri().toString().indexOf(File.separator + "features" + File.separator);
+        int end = scenario.getUri().toString().indexOf(".");
 
-        featureName=scenario.getUri().toString().substring(start,end).split(File.separator+"features"+File.separator);
+        featureName = scenario.getUri().toString().substring(start, end).split(File.separator + "features" + File.separator);
 
         if (counter == 1) {
             counter++;
@@ -65,18 +66,16 @@ public class StepDefinitions {
             LOGGER.info("==============================================================================================================================\n");
             LOGGER.info("                                      Skipping the scenario << " + scenario.getName() + " >> as the previous scenario failed");
             Assume.assumeTrue(false);
-        }
-        else if (!PathAndVariable.feature.equals("") && !PathAndVariable.feature.equalsIgnoreCase(featureName[1])) {
+        } else if (!PathAndVariable.feature.equals("") && !PathAndVariable.feature.equalsIgnoreCase(featureName[1])) {
             status = "Pass";
             LOGGER.info("=========================================================================================================================================================================\n");
             LOGGER.info("                              Feature << " + PathAndVariable.feature.toUpperCase() + " >> execution ended");
             PathAndVariable.feature = "";
             feature_check = 0;
-        }
-        else {
+        } else {
             status = "Pass";
         }
-        if(feature_check == 0 ) {
+        if (feature_check == 0) {
             LOGGER.info("======================================================================================================================================================================================================");
             LOGGER.info("                                                  Feature << " + featureName[1] + " >> execution started");
         }
@@ -215,6 +214,7 @@ public class StepDefinitions {
         value = Elements.getTextFromAll(obj);
         PathAndVariable.variables.put(var + "_" + PathAndVariable.random_value, value);
     }
+
     @And("I add service {string} with URL and replace {string} to set API endpoint")
     public void iAddServiceWithURLToSetAPIEndpoint(String service, String value) {
         APISetUp.addService(service, value);
@@ -229,7 +229,7 @@ public class StepDefinitions {
     public void iAddHeaderNameWithHeaderValueInAPI(String param, String value) {
         APISetUp.getHeaderValues(param, value);
     }
-    
+
     @And("I hit {string} api with API endpoint and request body")
     public void iHitApiWithAPIEndpointAndRequestBody(String type) throws IOException {
         if (PathAndVariable.params != null) {
@@ -244,6 +244,7 @@ public class StepDefinitions {
     public void iScrollDownAndClickOn(String obj, String value) {
         Elements.Scroll(obj, value);
     }
+
     @And("I save response status to variable {string} and response body to variable {string}")
     public void iSaveResponseStatusToVariableAndResponseBodyToVariable(String status, String message) {
         PathAndVariable.endpoint = "";
@@ -370,13 +371,11 @@ public class StepDefinitions {
 
     @And("I input text {string} to object {string}")
     public void iInputTextToObject(String text, String obj) {
-        if ((obj.equals("username") && text.equals(""))){
+        if ((obj.equals("username") && text.equals(""))) {
             Elements.input(System.getProperty("username"), obj);
-        }
-        else if ((obj.equals("password") && text.equals(""))){
+        } else if ((obj.equals("password") && text.equals(""))) {
             Elements.input(System.getProperty("password"), obj);
-        }
-        else {
+        } else {
             fetch_data = Elements.getVariable(text);
             if (fetch_data != null) {
                 Elements.input(fetch_data, obj);
@@ -450,9 +449,9 @@ public class StepDefinitions {
                 Browser.generate_error(PathAndVariable.error);
             } else {
                 PathAndVariable.variables.put(var + "_" + PathAndVariable.random_value, value);
-                    }
-                }
             }
+        }
+    }
 
     @And("I force a sleep for {string} seconds")
     public void iForceASleepForSeconds(String time) {
@@ -470,12 +469,12 @@ public class StepDefinitions {
     }
 
     @And("A different agent logs in")
-    public void aDifferentAgentLogsIn(){
+    public void aDifferentAgentLogsIn() {
         Elements.new_agent_login();
     }
 
     @And("The call is accepted by the agent")
-    public void theCallIsAcceptedByTheAgent(){
+    public void theCallIsAcceptedByTheAgent() {
         Elements.agent_acceptance();
     }
 

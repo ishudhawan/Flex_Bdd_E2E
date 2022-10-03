@@ -117,7 +117,7 @@ public class Elements {
         }
     }
 
-    public static void new_agent_login(){
+    public static void new_agent_login() {
         try {
             WebDriverManager.chromedriver().setup();
             HashMap<String, Object> chromePrefs = new HashMap<>();
@@ -164,20 +164,20 @@ public class Elements {
         }
     }
 
-    public static  void mouse_hover(String obj){
+    public static void mouse_hover(String obj) {
         try {
             Actions actions = new Actions(PathAndVariable.driver);
             PathAndVariable.fr = new FileReader(PathAndVariable.xpath_dir);
             PathAndVariable.prop.load(PathAndVariable.fr);
             element = PathAndVariable.driver.findElement(By.xpath(PathAndVariable.prop.getProperty(obj)));
             actions.moveToElement(element).perform();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             PathAndVariable.error = "Mouse hover the element";
             Browser.generate_error(PathAndVariable.error);
         }
     }
-    public static void agent_acceptance(){
+
+    public static void agent_acceptance() {
         try {
             WebElement element = PathAndVariable.driver2.findElement(By.xpath(PathAndVariable.prop.getProperty("accept_call")));
             element.click();
@@ -196,12 +196,12 @@ public class Elements {
             element.click();
             Thread.sleep(3000);
             PathAndVariable.driver2.quit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             PathAndVariable.error = "The agent was unable to accept the transferred call";
             Browser.generate_error(PathAndVariable.error);
         }
     }
+
     public static void input(String text, String obj) {
         try {
             PathAndVariable.fr = new FileReader(PathAndVariable.xpath_dir);
@@ -418,6 +418,7 @@ public class Elements {
         }
 
     }
+
     public static void Scroll(String obj, String value) {
         try {
             if (value.equals("false")) {

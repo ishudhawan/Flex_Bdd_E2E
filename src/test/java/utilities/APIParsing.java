@@ -11,9 +11,9 @@ import java.util.List;
 
 public class APIParsing {
 
-    static String result;
     static int Count = 0;
     static String ptr = null;
+
     public static void changeJSONTagValue(String path, String tag, String position, String var) {
         try {
             String body = new String(Files.readAllBytes(Paths.get(path)));
@@ -34,7 +34,7 @@ public class APIParsing {
                                               String jsonValue, String position) {
         int pos = Integer.parseInt(position);
         for (Object key : jsonObject.keySet()) {
-            if (key.equals(jsonKey) && ((jsonObject.get(key) instanceof String) || (jsonObject.get(key) instanceof Number) || (jsonObject.get(key) instanceof Boolean) || (jsonObject.get(key) instanceof List) || (jsonObject.get(key) instanceof JSONObject ) ||  jsonObject.get(key) == null)) {
+            if (key.equals(jsonKey) && ((jsonObject.get(key) instanceof String) || (jsonObject.get(key) instanceof Number) || (jsonObject.get(key) instanceof Boolean) || (jsonObject.get(key) instanceof List) || (jsonObject.get(key) instanceof JSONObject) || jsonObject.get(key) == null)) {
                 if (jsonValue.equalsIgnoreCase("true") || jsonValue.equalsIgnoreCase("false")) {
                     Boolean jsonBooleanValue = Boolean.parseBoolean(jsonValue);
                     Count = Count + 1;
@@ -145,7 +145,7 @@ public class APIParsing {
                 jsonObject = (JSONObject) jsonParser.parse(jsonString);
             } catch (Exception e) {
                 PathAndVariable.error = "Exception while creating json object for api";
-                Browser.generate_error(PathAndVariable.error+e);
+                Browser.generate_error(PathAndVariable.error + e);
             }
         }
         return jsonObject;

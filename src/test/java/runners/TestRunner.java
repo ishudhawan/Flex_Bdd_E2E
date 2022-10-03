@@ -3,9 +3,6 @@ package runners;
 
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.*;
-import org.testng.annotations.AfterClass;
-import stepdefinitions.StepDefinitions;
-import utilities.PathAndVariable;
 
 @CucumberOptions(
         plugin = {"pretty",

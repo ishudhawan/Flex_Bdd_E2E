@@ -57,9 +57,8 @@ public class HitRequest {
                                     extract().response();
                     PathAndVariable.message = response.getBody().asString();
                     PathAndVariable.statusCode = String.valueOf(response.getStatusCode());
-                    Browser.generate_logs("INFO", response.getBody().asString(),"");
-                }
-                else if (type.contains("get")) {
+                    Browser.generate_logs("INFO", response.getBody().asString(), "");
+                } else if (type.contains("get")) {
                     Response response =
                             given(request_spec(type, auth)).
                                     filter(new RequestLoggingFilter(captor)).
@@ -73,8 +72,7 @@ public class HitRequest {
                                     response();
                     PathAndVariable.message = response.getBody().asString();
                     PathAndVariable.statusCode = String.valueOf(response.getStatusCode());
-                }
-                else if (type.contains("put")) {
+                } else if (type.contains("put")) {
                     Response response =
                             given(request_spec(type, auth)).
                                     auth().oauth2(PathAndVariable.basic_auth).
