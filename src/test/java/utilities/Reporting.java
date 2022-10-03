@@ -3,8 +3,7 @@ package utilities;
 import net.masterthought.cucumber.Configuration;
 import net.masterthought.cucumber.ReportBuilder;
 import net.masterthought.cucumber.json.support.Status;
-import net.masterthought.cucumber.presentation.PresentationMode;
-import net.masterthought.cucumber.sorting.SortingMethod;
+import stepdefinitions.StepDefinitions;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -30,11 +29,11 @@ public class Reporting {
             configuration.addClassifications("Branch", "release/1.0");
             ReportBuilder reportBuilder = new ReportBuilder(jsonFiles, configuration);
             reportBuilder.generateReports();
-            Log4j2Config.logger.info("****************Reports generated*****************");
+            StepDefinitions.LOGGER.info("****************Reports generated*****************");
             ZipHelper.zipDir(PathAndVariable.report_Name + "/cucumber-html-reports", PathAndVariable.report_Name + "/" + PathAndVariable.tags.split("@")[1] + ".zip");
         } catch (Exception e) {
             e.printStackTrace();
-            Log4j2Config.logger.error("Exception occurs : " + e);
+            StepDefinitions.LOGGER.error("Exception occurs : " + e);
         }
     }
 
@@ -46,12 +45,12 @@ public class Reporting {
                 fW = new FileOutputStream(nameZipFile);
                 zip = new ZipOutputStream(fW);
                 addFolderToZip("", dirName, zip);
-                Log4j2Config.logger.info("Zip folder created at directory: " + dirName);
+                StepDefinitions.LOGGER.info("Zip folder created at directory: " + dirName);
                 zip.close();
                 fW.close();
             } catch (Exception exception) {
                 exception.printStackTrace();
-                Log4j2Config.logger.error("Exception occurs while zipping file:" + exception);
+                StepDefinitions.LOGGER.error("Exception occurs while zipping file:" + exception);
             }
         }
 
@@ -71,7 +70,7 @@ public class Reporting {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                Log4j2Config.logger.error("Exception occurs : " + e);
+                StepDefinitions.LOGGER.error("Exception occurs : " + e);
             }
         }
 
@@ -95,7 +94,7 @@ public class Reporting {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                Log4j2Config.logger.error("Exception occurs : " + e);
+                StepDefinitions.LOGGER.error("Exception occurs : " + e);
             }
         }
     }
@@ -178,7 +177,7 @@ public class Reporting {
             bw1.close();
         } catch (IOException e) {
             e.printStackTrace();
-            Log4j2Config.logger.error("Exception occurs : " + e);
+            StepDefinitions.LOGGER.error("Exception occurs : " + e);
         }
         StringBuilder content = new StringBuilder();
         try {
@@ -190,7 +189,7 @@ public class Reporting {
             input.close();
         } catch (IOException e) {
             e.printStackTrace();
-            Log4j2Config.logger.error("Exception occurs : " + e);
+            StepDefinitions.LOGGER.error("Exception occurs : " + e);
         }
         mailBody = content.toString();
     }

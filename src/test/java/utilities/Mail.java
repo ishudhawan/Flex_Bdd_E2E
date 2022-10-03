@@ -1,5 +1,7 @@
 package utilities;
 
+import stepdefinitions.StepDefinitions;
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -49,7 +51,7 @@ public class Mail {
             messageBodyPart2.setFileName(arr[arr.length - 1]);
             String logFileName = PathAndVariable.log_name + "/" + PathAndVariable.tags.split("@")[1] + ".log";
             String[] logArr = logFileName.split("/");
-            Log4j2Config.logger.info("log file path.    "+logFileName);
+            StepDefinitions.LOGGER.info("log file path.    "+logFileName);
             MimeBodyPart attachmentPart = new MimeBodyPart();
             DataSource source1 = new FileDataSource(logFileName);
             attachmentPart.setDataHandler(new DataHandler(source1));
@@ -62,7 +64,7 @@ public class Mail {
                 for (int i = 0; i< Browser.errorScreenShot_name.size(); i++) {
                     String ScreenshotName = Browser.errorScreenShot_name.get(i);
                     String[] screenshotArr = ScreenshotName.split("/");
-                    Log4j2Config.logger.info("ScreenShot file path.    "+ScreenshotName);
+                    StepDefinitions.LOGGER.info("ScreenShot file path.    "+ScreenshotName);
                     MimeBodyPart screenShot = new MimeBodyPart();
                     DataSource source2 = new FileDataSource(ScreenshotName);
                     screenShot.setDataHandler(new DataHandler(source2));
@@ -72,7 +74,7 @@ public class Mail {
             }
             message.setContent(multipartObject);
             Transport.send(message);
-            Log4j2Config.logger.info("Sent email successfully....");
+            StepDefinitions.LOGGER.info("Sent email successfully....");
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }

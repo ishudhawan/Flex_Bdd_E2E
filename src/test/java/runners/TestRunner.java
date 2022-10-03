@@ -3,12 +3,6 @@ package runners;
 
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.*;
-import stepdefinitions.StepDefinitions;
-import utilities.Log4j2Config;
-import utilities.Mail;
-import utilities.PathAndVariable;
-//import org.testng.annotations.AfterClass;
-import utilities.Reporting;
 
 @CucumberOptions(
         plugin = {"pretty",
@@ -17,7 +11,7 @@ import utilities.Reporting;
                 "com.epam.reportportal.cucumber.ScenarioReporter"},
         features = {"src/test/resources/features"},
         glue = {"stepdefinitions"},
-        tags = "@api1",
+        tags = "@api",
         monochrome = true)
 
 public class TestRunner extends AbstractTestNGCucumberTests {
@@ -27,14 +21,11 @@ public class TestRunner extends AbstractTestNGCucumberTests {
 //            testNGCucumberRunner.finish();
 //            StepDefinitions.feature_check = 0;
 //            StepDefinitions.initialize = 0;
-//            Log4j2Config.logger.info("=========================================================================================================================================================================");
-//            Log4j2Config.logger.info("                                      Feature << " + PathAndVariable.feature.toUpperCase() + " >> execution ended");
-//            Log4j2Config.logger.info("=========================================================================================================================================================================\n\n");
+//            StepDefinitions.LOGGER.info("=========================================================================================================================================================================");
+//            StepDefinitions.LOGGER.info("                                      Feature << " + PathAndVariable.feature.toUpperCase() + " >> execution ended");
+//            StepDefinitions.LOGGER.info("=========================================================================================================================================================================\n\n");
 //            PathAndVariable.feature = "";
 //            new Reporting().configureReport();
-//            if (PathAndVariable.Telegram.equalsIgnoreCase("Yes")) {
-//                Telegram.send_file();
-//            }
 //            new Mail().sendMail();
 //        }
 }

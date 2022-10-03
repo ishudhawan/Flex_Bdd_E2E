@@ -6,6 +6,8 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.junit.Assume;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utilities.*;
 
 
@@ -25,11 +27,13 @@ public class StepDefinitions {
     public static int feature_check = 0;
     Date startDate;
     Date endDate;
+    public static final Logger LOGGER = LoggerFactory.getLogger(StepDefinitions.class);
 
     @Before
     public void beforeScenario(Scenario scenario) {
         startDate = new Date();
         PathAndVariable.scenario = scenario.getName();
+        PathAndVariable.scenario_name = scenario;
         if (initialize == 0) {
             PathAndVariable.tags = System.getProperty("tags");
             PathAndVariable.error = "No error";
@@ -49,19 +53,18 @@ public class StepDefinitions {
         PathAndVariable.api_username = null;
         PathAndVariable.saving_all_details.put(PathAndVariable.scenario, new HashMap<>());
         if (counter == 1) {
-            Log.Logging();
             counter++;
         }
         if (!status.equalsIgnoreCase("Pass") && PathAndVariable.feature.equalsIgnoreCase(scenario.getUri().toString().split("/")[12].split(".feature")[0]) && !PathAndVariable.feature.equals("")) {
             status = "Skip";
-            Log4j2Config.logger.info("==============================================================================================================================\n");
-            Log4j2Config.logger.info("                                      Skipping the scenario << " + scenario.getName() + " >> as the previous scenario failed");
+            LOGGER.info("==============================================================================================================================\n");
+            LOGGER.info("                                      Skipping the scenario << " + scenario.getName() + " >> as the previous scenario failed");
             Assume.assumeTrue(false);
         }
         else if (!PathAndVariable.feature.equals("") && !PathAndVariable.feature.equalsIgnoreCase(scenario.getUri().toString().split("/")[12].split(".feature")[0])) {
             status = "Pass";
-            Log4j2Config.logger.info("=========================================================================================================================================================================\n");
-            Log4j2Config.logger.info("                              Feature << " + PathAndVariable.feature.toUpperCase() + " >> execution ended");
+            LOGGER.info("=========================================================================================================================================================================\n");
+            LOGGER.info("                              Feature << " + PathAndVariable.feature.toUpperCase() + " >> execution ended");
             PathAndVariable.feature = "";
             feature_check = 0;
         }
@@ -69,12 +72,12 @@ public class StepDefinitions {
             status = "Pass";
         }
         if(feature_check == 0 ) {
-            Log4j2Config.logger.info("======================================================================================================================================================================================================");
-            Log4j2Config.logger.info("                                                  Feature << " + scenario.getUri().toString().split("/")[12].split(".feature")[0] + " >> execution started");
+            LOGGER.info("======================================================================================================================================================================================================");
+            LOGGER.info("                                                  Feature << " + scenario.getUri().toString().split("/")[12].split(".feature")[0] + " >> execution started");
         }
-        Log4j2Config.logger.info("======================================================================================================================================================================================================\n");
-        Log4j2Config.logger.info("                                              Scenario << " + scenario.getName() + " >> execution started");
-        Log4j2Config.logger.info("======================================================================================================================================================================================================\n");
+        LOGGER.info("======================================================================================================================================================================================================\n");
+        LOGGER.info("                                              Scenario << " + scenario.getName() + " >> execution started");
+        LOGGER.info("======================================================================================================================================================================================================\n");
     }
 
     @After
@@ -97,8 +100,8 @@ public class StepDefinitions {
             PathAndVariable.time_difference = hours + " hours " + minutes + " minutes " + seconds + " seconds";
         }
         if (!status.equals("Skip")) {
-            Log4j2Config.logger.info("=========================================================================================================================================================================");
-            Log4j2Config.logger.info("                                      Scenario << " + scenario.getName() + " >> execution ended with status " + status.toUpperCase());
+            LOGGER.info("=========================================================================================================================================================================");
+            LOGGER.info("                                      Scenario << " + scenario.getName() + " >> execution ended with status " + status.toUpperCase());
         }
         PathAndVariable.feature = scenario.getUri().toString().split("/")[12].split(".feature")[0];
         indexSI++;

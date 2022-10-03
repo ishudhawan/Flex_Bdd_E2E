@@ -1,5 +1,6 @@
 package utilities;
 
+import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assume;
 import org.openqa.selenium.Keys;
@@ -40,10 +41,10 @@ public class Browser {
             PathAndVariable.fr = new FileReader(PathAndVariable.prop_dir);
             PathAndVariable.prop.load(PathAndVariable.fr);
             webUrl = PathAndVariable.prop.getProperty(url);
-            if(webUrl!= null) {
+            if (webUrl != null) {
                 PathAndVariable.driver.navigate().to(new URL(webUrl));
                 Browser.generate_logs("Info", "Opening the URl: ", webUrl);
-            }else{
+            } else {
                 PathAndVariable.driver.get(url);
                 Browser.generate_logs("Info", "Opening the URl: ", url);
             }
@@ -81,11 +82,11 @@ public class Browser {
 
     public static void generate_logs(String type, String text, String obj) {
         if (type.equalsIgnoreCase("INFO"))
-            Log4j2Config.logger.info(text + " " + obj);
+            StepDefinitions.LOGGER.info(text + " " + obj);
         else if (type.equalsIgnoreCase("Error"))
-            Log4j2Config.logger.error(text + " " + obj);
+            StepDefinitions.LOGGER.error(text + " " + obj);
         else if (type.equalsIgnoreCase("Debug"))
-            Log4j2Config.logger.debug(text + " " + obj);
+            StepDefinitions.LOGGER.debug(text + " " + obj);
     }
 
     public static void scroll_horizontally_with_tab(int tab) {
@@ -142,40 +143,43 @@ public class Browser {
     public static void take_screenshot(String name) {
         try {
             if (PathAndVariable.driver != null) {
-                String extension = ".png";
-                String spcl = "--";
-                Date date = new Date();
-                DateFormat dateFormat2 = new SimpleDateFormat("HH-mm-ss");
-                String timestamp = dateFormat2.format(date);
-                screenshot_name = PathAndVariable.screenshot_name + timestamp + spcl + name
-                        + spcl + PathAndVariable.scenario + spcl + PathAndVariable.random_value + extension;
-                TakesScreenshot scrShot = ((TakesScreenshot) PathAndVariable.driver);
-                File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-                File DestFile = new File(screenshot_name);
-                FileUtils.copyFile(SrcFile, DestFile);
-                if (name.equalsIgnoreCase("Error")) {
-                    isScreenShotAttach = true;
-                    errorScreenShot_name.add(screenshot_name);
+                if (PathAndVariable.driver instanceof TakesScreenshot) {
+                    PathAndVariable.scenario_name.attach(((TakesScreenshot) PathAndVariable.driver).getScreenshotAs(OutputType.BYTES), "image/png", "Screenshot");
                 }
+//                String extension = ".png";
+//                String spcl = "--";
+//                Date date = new Date();
+//                DateFormat dateFormat2 = new SimpleDateFormat("HH-mm-ss");
+//                String timestamp = dateFormat2.format(date);
+//                screenshot_name = PathAndVariable.screenshot_name + timestamp + spcl + name
+//                        + spcl + PathAndVariable.scenario + spcl + PathAndVariable.random_value + extension;
+//                TakesScreenshot scrShot = ((TakesScreenshot) PathAndVariable.driver);
+//                File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+//                File DestFile = new File(screenshot_name);
+//                FileUtils.copyFile(SrcFile, DestFile);
+//                if (name.equalsIgnoreCase("Error")) {
+//                    isScreenShotAttach = true;
+//                    errorScreenShot_name.add(screenshot_name);
+//                }
             }
         } catch (Exception e) {
             try {
                 if (PathAndVariable.driver2 != null) {
-                    String extension = ".png";
-                    String spcl = "--";
-                    Date date = new Date();
-                    DateFormat dateFormat2 = new SimpleDateFormat("HH-mm-ss");
-                    String timestamp = dateFormat2.format(date);
-                    screenshot_name = PathAndVariable.screenshot_name + timestamp + spcl + name
-                            + spcl + PathAndVariable.scenario + spcl + PathAndVariable.random_value + extension;
-                    TakesScreenshot scrShot = ((TakesScreenshot) PathAndVariable.driver);
-                    File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-                    File DestFile = new File(screenshot_name);
-                    FileUtils.copyFile(SrcFile, DestFile);
-                    if (name.equalsIgnoreCase("Error")) {
-                        isScreenShotAttach = true;
-                        errorScreenShot_name.add(screenshot_name);
-                    }
+//                    String extension = ".png";
+//                    String spcl = "--";
+//                    Date date = new Date();
+//                    DateFormat dateFormat2 = new SimpleDateFormat("HH-mm-ss");
+//                    String timestamp = dateFormat2.format(date);
+//                    screenshot_name = PathAndVariable.screenshot_name + timestamp + spcl + name
+//                            + spcl + PathAndVariable.scenario + spcl + PathAndVariable.random_value + extension;
+//                    TakesScreenshot scrShot = ((TakesScreenshot) PathAndVariable.driver);
+//                    File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+//                    File DestFile = new File(screenshot_name);
+//                    FileUtils.copyFile(SrcFile, DestFile);
+//                    if (name.equalsIgnoreCase("Error")) {
+//                        isScreenShotAttach = true;
+//                        errorScreenShot_name.add(screenshot_name);
+//                    }
                 }
             } catch (Exception ex) {
                 Browser.generate_logs("Error", "Unable to take screenshot", name);

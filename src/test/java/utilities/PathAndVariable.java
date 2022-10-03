@@ -1,10 +1,12 @@
 package utilities;
 
+import io.cucumber.java.Scenario;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.*;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.junit.Assume;
 import org.openqa.selenium.WebDriver;
+import stepdefinitions.StepDefinitions;
 
 import java.io.File;
 import java.io.FileReader;
@@ -13,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class PathAndVariable {
+    public static Scenario scenario_name = null;
     public static String scenario = null;
     public static HashMap<String, String> variables = new HashMap<>();
     public static HashMap<String, String> form_params = new HashMap<>();
@@ -77,33 +80,33 @@ public class PathAndVariable {
             } else {
                 folder = "TestRun";
             }
-            PathAndVariable.screenshot_name = PathAndVariable.parent + '/' + "screenshots_" + folder + '/' +
-                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
-            PathAndVariable.log_name = PathAndVariable.parent + '/' + "Logs_" + folder + '/' +
-                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
-            theDir = new File(PathAndVariable.screenshot_name);
-            PathAndVariable.report_Name = PathAndVariable.parent + '/' + "Reports_" + folder + '/' +
-                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
-            PathAndVariable.screenshot_name = PathAndVariable.screenshot_name + '/';
+//            PathAndVariable.screenshot_name = PathAndVariable.parent + '/' + "screenshots_" + folder + '/' +
+//                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
+//            PathAndVariable.log_name = PathAndVariable.parent + '/' + "Logs_" + folder + '/' +
+//                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
+//            theDir = new File(PathAndVariable.screenshot_name);
+//            PathAndVariable.report_Name = PathAndVariable.parent + '/' + "Reports_" + folder + '/' +
+//                    PathAndVariable.tags.split("@")[1] + '/' + PathAndVariable.date1 + '/' + PathAndVariable.timestamp;
+//            PathAndVariable.screenshot_name = PathAndVariable.screenshot_name + '/';
 
-            if (!theDir.exists()) {
-                file = theDir.mkdirs();
-            }
-            theDir = new File(PathAndVariable.log_name);
-            if (!theDir.exists()) {
-                file = theDir.mkdirs();
-            }
-            theDir = new File(PathAndVariable.report_Name);
-            if (!theDir.exists()) {
-                file = theDir.mkdirs();
-            }
-            PathAndVariable.Downloads = PathAndVariable.parent + "/Downloads/";
-            theDir = new File(PathAndVariable.Downloads);
-            if (!theDir.exists()) {
-                file = theDir.mkdirs();
-            }
+//            if (!theDir.exists()) {
+//                file = theDir.mkdirs();
+//            }
+//            theDir = new File(PathAndVariable.log_name);
+//            if (!theDir.exists()) {
+//                file = theDir.mkdirs();
+//            }
+//            theDir = new File(PathAndVariable.report_Name);
+//            if (!theDir.exists()) {
+//                file = theDir.mkdirs();
+//            }
+//            PathAndVariable.Downloads = PathAndVariable.parent + "/Downloads/";
+//            theDir = new File(PathAndVariable.Downloads);
+//            if (!theDir.exists()) {
+//                file = theDir.mkdirs();
+//            }
         } catch (Exception e) {
-            Log4j2Config.logger.info("Error in folders creation");
+            StepDefinitions.LOGGER.info("Error in folders creation");
             Assume.assumeTrue(false);
         }
     }
