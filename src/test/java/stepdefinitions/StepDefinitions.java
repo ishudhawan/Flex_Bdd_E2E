@@ -52,16 +52,21 @@ public class StepDefinitions {
         PathAndVariable.params = null;
         PathAndVariable.api_username = null;
         PathAndVariable.saving_all_details.put(PathAndVariable.scenario, new HashMap<>());
+        int start=scenario.getUri().toString().indexOf(File.separator+"features"+File.separator);
+        int end=scenario.getUri().toString().indexOf(".");
+
+        featureName=scenario.getUri().toString().substring(start,end).split(File.separator+"features"+File.separator);
+
         if (counter == 1) {
             counter++;
         }
-        if (!status.equalsIgnoreCase("Pass") && PathAndVariable.feature.equalsIgnoreCase(scenario.getUri().toString().split("/")[12].split(".feature")[0]) && !PathAndVariable.feature.equals("")) {
+        if (!status.equalsIgnoreCase("Pass") && PathAndVariable.feature.equalsIgnoreCase(featureName[1]) && !PathAndVariable.feature.equals("")) {
             status = "Skip";
             LOGGER.info("==============================================================================================================================\n");
             LOGGER.info("                                      Skipping the scenario << " + scenario.getName() + " >> as the previous scenario failed");
             Assume.assumeTrue(false);
         }
-        else if (!PathAndVariable.feature.equals("") && !PathAndVariable.feature.equalsIgnoreCase(scenario.getUri().toString().split("/")[12].split(".feature")[0])) {
+        else if (!PathAndVariable.feature.equals("") && !PathAndVariable.feature.equalsIgnoreCase(featureName[1])) {
             status = "Pass";
             LOGGER.info("=========================================================================================================================================================================\n");
             LOGGER.info("                              Feature << " + PathAndVariable.feature.toUpperCase() + " >> execution ended");
@@ -71,11 +76,6 @@ public class StepDefinitions {
         else {
             status = "Pass";
         }
-        int start=scenario.getUri().toString().indexOf(File.separator+"features"+File.separator);
-        int end=scenario.getUri().toString().indexOf(".");
-
-        featureName=scenario.getUri().toString().substring(start,end).split(File.separator+"features"+File.separator);
-        System.out.println("featureName ="+featureName[1]);
         if(feature_check == 0 ) {
             LOGGER.info("======================================================================================================================================================================================================");
             LOGGER.info("                                                  Feature << " + featureName[1] + " >> execution started");
