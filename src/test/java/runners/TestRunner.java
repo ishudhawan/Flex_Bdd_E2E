@@ -3,6 +3,9 @@ package runners;
 
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.*;
+import org.testng.annotations.AfterClass;
+import stepdefinitions.StepDefinitions;
+import utilities.PathAndVariable;
 
 @CucumberOptions(
         plugin = {"pretty",
@@ -11,7 +14,7 @@ import io.cucumber.testng.*;
                 "com.epam.reportportal.cucumber.ScenarioReporter"},
         features = {"src/test/resources/features"},
         glue = {"stepdefinitions"},
-        tags = "@api",
+        tags = "@api1",
         monochrome = true)
 
 public class TestRunner extends AbstractTestNGCucumberTests {

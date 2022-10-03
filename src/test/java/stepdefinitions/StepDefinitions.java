@@ -9,7 +9,7 @@ import org.junit.Assume;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utilities.*;
-
+import java.io.File;
 
 import java.io.IOException;
 import java.util.Date;
@@ -27,6 +27,7 @@ public class StepDefinitions {
     public static int feature_check = 0;
     Date startDate;
     Date endDate;
+    String[] featureName;
     public static final Logger LOGGER = LoggerFactory.getLogger(StepDefinitions.class);
 
     @Before
@@ -70,9 +71,14 @@ public class StepDefinitions {
         else {
             status = "Pass";
         }
+        int start=scenario.getUri().toString().indexOf(File.separator+"features"+File.separator);
+        int end=scenario.getUri().toString().indexOf(".");
+
+        featureName=scenario.getUri().toString().substring(start,end).split(File.separator+"features"+File.separator);
+        System.out.println("featureName ="+featureName[1]);
         if(feature_check == 0 ) {
             LOGGER.info("======================================================================================================================================================================================================");
-            LOGGER.info("                                                  Feature << " + scenario.getUri().toString().split("/")[12].split(".feature")[0] + " >> execution started");
+            LOGGER.info("                                                  Feature << " + featureName[1] + " >> execution started");
         }
         LOGGER.info("======================================================================================================================================================================================================\n");
         LOGGER.info("                                              Scenario << " + scenario.getName() + " >> execution started");
@@ -102,7 +108,7 @@ public class StepDefinitions {
             LOGGER.info("=========================================================================================================================================================================");
             LOGGER.info("                                      Scenario << " + scenario.getName() + " >> execution ended with status " + status.toUpperCase());
         }
-        PathAndVariable.feature = scenario.getUri().toString().split("/")[12].split(".feature")[0];
+        PathAndVariable.feature = featureName[1];
         indexSI++;
         PathAndVariable.saving_all_details.get(PathAndVariable.scenario).put("Index", String.valueOf(indexSI));
         PathAndVariable.saving_all_details.get(PathAndVariable.scenario).put("Feature", PathAndVariable.feature.toUpperCase());
