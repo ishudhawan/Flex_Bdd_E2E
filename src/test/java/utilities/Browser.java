@@ -1,29 +1,21 @@
 package utilities;
 
-import io.cucumber.java.Scenario;
-import org.apache.commons.io.FileUtils;
-import org.junit.Assume;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.interactions.Actions;
 import stepdefinitions.StepDefinitions;
 
-import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Browser {
 
-    public static String temp = "";
-    public static String screenshot_name;
-    public static ArrayList<String> errorScreenShot_name = new ArrayList<String>();
-    public static boolean isScreenShotAttach = false;
+//    public static String temp = "";
+//    public static String screenshot_name;
+//    public static ArrayList<String> errorScreenShot_name = new ArrayList<String>();
+//    public static boolean isScreenShotAttach = false;
 
     public static void generate_error(String error) {
         generate_logs("Error", error, "");
@@ -36,7 +28,7 @@ public class Browser {
     }
 
     public static void openURL(String url) {
-        String webUrl = "";
+        String webUrl;
         try {
             PathAndVariable.fr = new FileReader(PathAndVariable.prop_dir);
             PathAndVariable.prop.load(PathAndVariable.fr);
@@ -71,15 +63,6 @@ public class Browser {
         PathAndVariable.saving_all_details.get(PathAndVariable.scenario).put(var, text);
     }
 
-    public static String get_values(String var) {
-        try {
-            temp = PathAndVariable.saving_all_details.get(PathAndVariable.scenario).get(var);
-            return temp;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
     public static void generate_logs(String type, String text, String obj) {
         if (type.equalsIgnoreCase("INFO"))
             StepDefinitions.LOGGER.info(text + " " + obj);
@@ -99,18 +82,6 @@ public class Browser {
             generate_logs("Info", "Performing horizontal scroll with tab value" + tab, "");
         } catch (Exception e) {
             PathAndVariable.error = "Error while pressing tab";
-            Browser.generate_error(PathAndVariable.error);
-        }
-    }
-
-    public void press_enter() {
-        try {
-            Actions act = new Actions(PathAndVariable.driver);
-            act.sendKeys(Keys.ENTER).build().perform();
-            take_screenshot("");
-            generate_logs("Info", "Preforming enter action ", "");
-        } catch (Exception e) {
-            PathAndVariable.error = "Error while pressing enter";
             Browser.generate_error(PathAndVariable.error);
         }
     }
