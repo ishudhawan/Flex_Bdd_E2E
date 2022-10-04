@@ -32,7 +32,7 @@ public class Browser {
         StepDefinitions.status = "Fail";
         StepDefinitions.feature_check = 1;
         close();
-        Assume.assumeTrue(false);
+//        Assume.assumeTrue(false);
     }
 
     public static void openURL(String url) {
