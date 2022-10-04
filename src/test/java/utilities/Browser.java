@@ -1,5 +1,6 @@
 package utilities;
 
+import org.junit.Assume;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -24,7 +25,7 @@ public class Browser {
         StepDefinitions.status = "Fail";
         StepDefinitions.feature_check = 1;
         close();
-//        Assume.assumeTrue(false);
+        Assume.assumeTrue(false);
     }
 
     public static void openURL(String url) {
