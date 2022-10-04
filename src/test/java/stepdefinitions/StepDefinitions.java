@@ -11,8 +11,6 @@ import org.slf4j.LoggerFactory;
 import utilities.*;
 
 import java.io.File;
-
-import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -231,7 +229,7 @@ public class StepDefinitions {
     }
 
     @And("I hit {string} api with API endpoint and request body")
-    public void iHitApiWithAPIEndpointAndRequestBody(String type) throws IOException {
+    public void iHitApiWithAPIEndpointAndRequestBody(String type){
         if (PathAndVariable.params != null) {
             PathAndVariable.params = PathAndVariable.params.replace(" ", "");
 //            PathAndVariable.endpoint = PathAndVariable.endpoint + PathAndVariable.params;
@@ -249,7 +247,7 @@ public class StepDefinitions {
     public void iSaveResponseStatusToVariableAndResponseBodyToVariable(String status, String message) {
         PathAndVariable.endpoint = "";
         PathAndVariable.variables.put(status + "_" + PathAndVariable.random_value, PathAndVariable.statusCode);
-        PathAndVariable.variables.put(message + "_" + PathAndVariable.random_value, PathAndVariable.message.toString());
+        PathAndVariable.variables.put(message + "_" + PathAndVariable.random_value, PathAndVariable.message);
     }
 
     @And("I verify value of {string} to be {string}")
