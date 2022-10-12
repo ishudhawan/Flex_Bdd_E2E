@@ -48,10 +48,7 @@ Feature:Incoming Voice Calls
     And I click on "offline"
     And I click on "available"
     And I click on "close_notification"
-
-  @incoming-voice @api
-  Scenario: Call Accept and Call Transfer
-    Given I click on "accept_call"
+    And I click on "accept_call"
     And I force a sleep for "10" seconds
     And A different agent logs in
     And I force a sleep for "3" seconds

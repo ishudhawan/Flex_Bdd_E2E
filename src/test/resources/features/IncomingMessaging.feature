@@ -39,9 +39,7 @@ Feature:Incoming Messaging
     And I click on "available"
     And I click on "close_notification"
 
-  @message @api
-  Scenario: Message accept
-    Given I wait for "accept_text"
+    And I wait for "accept_text"
     And I click on "accept_text"
     And I wait for "text_area"
     And I force a sleep for "3" seconds
