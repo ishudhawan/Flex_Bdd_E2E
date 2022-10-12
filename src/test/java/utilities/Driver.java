@@ -28,8 +28,8 @@ public class Driver {
             else{
                 WebDriverManager.chromedriver().setup();
                 PathAndVariable.driver = new ChromeDriver(options);
-                PathAndVariable.driver.manage().window().maximize();
             }
+            PathAndVariable.driver.manage().window().maximize();
             Browser.generate_logs("Info", "ChromeDriver instance created " + PathAndVariable.driver, "");
             Browser.take_screenshot("Browser");
         } catch (Exception e) {

@@ -6,6 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -119,7 +120,6 @@ public class Elements {
 
     public static void new_agent_login() {
         try {
-            WebDriverManager.chromedriver().setup();
             HashMap<String, Object> chromePrefs = new HashMap<>();
             chromePrefs.put("profile.default_content_settings.popups", 0);
             chromePrefs.put("download.default_directory", PathAndVariable.Downloads);
@@ -130,7 +130,13 @@ public class Elements {
             options.addArguments("use-fake-ui-for-media-stream");
             options.addArguments("--allow-insecure-localhost");
             options.addArguments("Headless");
-            PathAndVariable.driver2 = new ChromeDriver(options);
+            if (System.getProperty("runMode").equals ("jenkins")){
+                PathAndVariable.driver2 = new RemoteWebDriver(new URL("http://outside:notS2-sekwrL@vqe-grid-selenium.stage-us1.twilio.com:4444/wd/hub"), options);
+            }
+            else{
+                WebDriverManager.chromedriver().setup();
+                PathAndVariable.driver2 = new ChromeDriver(options);
+            }
             PathAndVariable.driver2.manage().window().maximize();
             PathAndVariable.fr = new FileReader(PathAndVariable.prop_dir);
             PathAndVariable.prop.load(PathAndVariable.fr);
