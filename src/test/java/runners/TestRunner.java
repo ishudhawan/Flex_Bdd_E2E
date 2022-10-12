@@ -7,8 +7,8 @@ import io.cucumber.testng.*;
 @CucumberOptions(
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber-pretty",
-                "json:target/cucumber.json",
-                "com.epam.reportportal.cucumber.ScenarioReporter"},
+                "json:target/cucumber.json"},
+//                "com.epam.reportportal.cucumber.ScenarioReporter"},
         features = {"src/test/resources/features"},
         glue = {"stepdefinitions"},
         monochrome = true)

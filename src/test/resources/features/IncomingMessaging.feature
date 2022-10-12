@@ -1,6 +1,6 @@
 Feature:Incoming Messaging
 
-  @message
+  @message @api
   Scenario: Find available phone numbers API
     Given I set api with URL "twilio"
     And I add service "available_phone" with URL and replace "account" to set API endpoint
@@ -11,7 +11,7 @@ Feature:Incoming Messaging
     And I save value in "JSON" response tag "phone_number__1" to variable "To"
     And I save value in "JSON" response tag "phone_number__2" to variable "From"
 
-  @message
+  @message @api
   Scenario: Making agent available
     Given I open the web window
     And I open the url "flex"
@@ -27,7 +27,7 @@ Feature:Incoming Messaging
     And I click on "available"
     And I click on "close_notification"
 
-  @message
+  @message @api
   Scenario: Incoming Message API
     Given I set api with URL "twilio"
     And I add service "message" with URL and replace "account" to set API endpoint
@@ -39,7 +39,7 @@ Feature:Incoming Messaging
     And I validate response tag "status" with value "queued"
     And I save value in "JSON" response tag "sid" to variable "sid"
 
-  @message
+  @message @api
   Scenario: Message accept
     Given I wait for "accept_text"
     And I click on "accept_text"
@@ -56,7 +56,7 @@ Feature:Incoming Messaging
     And I close all browsers
 
 
-  @message
+  @message @api
   Scenario: Check message status API
     Given I set api with URL "twilio"
     And I force a sleep for "10" seconds

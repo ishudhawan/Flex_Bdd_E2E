@@ -1,6 +1,6 @@
 Feature:Outgoing Voice Calls
 
-  @outgoing-voice
+  @outgoing-voice @api
   Scenario: Find available phone numbers API
     Given I set api with URL "twilio"
     And I add service "available_phone" with URL and replace "account" to set API endpoint
@@ -11,7 +11,7 @@ Feature:Outgoing Voice Calls
     And I save value in "JSON" response tag "phone_number__1" to variable "To"
     And I save value in "JSON" response tag "phone_number__2" to variable "From"
 
-  @outgoing-voice
+  @outgoing-voice @api
   Scenario: Make Outgoing Call API
     Given I set api with URL "twilio"
     And I add service "make_call" with URL and replace "account" to set API endpoint
@@ -23,7 +23,7 @@ Feature:Outgoing Voice Calls
     And I validate response tag "status" with value "queued"
     And I save value in "JSON" response tag "sid" to variable "sid"
 
-  @outgoing-voice
+  @outgoing-voice @api
   Scenario Outline: To check for <status> status for Outgoing Voice Call
     Given I set api with URL "twilio"
     And I force a sleep for "<sleep>" seconds
