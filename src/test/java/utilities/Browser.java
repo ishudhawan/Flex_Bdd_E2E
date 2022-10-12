@@ -34,12 +34,14 @@ public class Browser {
             PathAndVariable.fr = new FileReader(PathAndVariable.prop_dir);
             PathAndVariable.prop.load(PathAndVariable.fr);
             webUrl = PathAndVariable.prop.getProperty(url);
+            Browser.generate_logs("Info", "Property file is: ", PathAndVariable.prop_dir);
+            Browser.generate_logs("Info", "URL is: ", webUrl);
             if (webUrl != null) {
                 PathAndVariable.driver.navigate().to(new URL(webUrl));
-                Browser.generate_logs("Info", "Opening the URl: ", webUrl);
+                Browser.generate_logs("Info", "Opening the URL: ", webUrl);
             } else {
                 PathAndVariable.driver.get(url);
-                Browser.generate_logs("Info", "Opening the URl: ", url);
+                Browser.generate_logs("Info", "Opening the URL: ", url);
             }
         } catch (Exception e) {
             PathAndVariable.error = "Error while opening url: " + e;
