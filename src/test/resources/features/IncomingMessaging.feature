@@ -12,6 +12,18 @@ Feature:Incoming Messaging
     And I save value in "JSON" response tag "phone_number__2" to variable "From"
 
   @message @api
+  Scenario: Incoming Message API
+    Given I set api with URL "twilio"
+    And I add service "message" with URL and replace "account" to set API endpoint
+    And I get authentication username "username" and password "password" for API authentication
+    And I add body param "To,From,Body" with value "To,From,Hi there" in API
+    And I hit "JSON POST" api with API endpoint and request body
+    And I save response status to variable "Response_status" and response body to variable "Response_body"
+    And I verify value of "Response_status" to be "201"
+    And I validate response tag "status" with value "queued"
+    And I save value in "JSON" response tag "sid" to variable "sid"
+
+  @message @api
   Scenario: Making agent available
     Given I open the web window
     And I open the url "flex"
@@ -26,18 +38,6 @@ Feature:Incoming Messaging
     And I click on "offline"
     And I click on "available"
     And I click on "close_notification"
-
-  @message @api
-  Scenario: Incoming Message API
-    Given I set api with URL "twilio"
-    And I add service "message" with URL and replace "account" to set API endpoint
-    And I get authentication username "username" and password "password" for API authentication
-    And I add body param "To,From,Body" with value "To,From,Hi there" in API
-    And I hit "JSON POST" api with API endpoint and request body
-    And I save response status to variable "Response_status" and response body to variable "Response_body"
-    And I verify value of "Response_status" to be "201"
-    And I validate response tag "status" with value "queued"
-    And I save value in "JSON" response tag "sid" to variable "sid"
 
   @message @api
   Scenario: Message accept

@@ -97,6 +97,7 @@ public class Elements {
             PathAndVariable.prop.load(PathAndVariable.fr);
             element = PathAndVariable.driver.findElement(By.xpath(PathAndVariable.prop.getProperty(obj)));
             element.click();
+            Browser.take_screenshot(obj);
             Browser.generate_logs("Info", "Clicking on the element", obj);
         } catch (Exception e) {
             click_element(obj);
@@ -111,6 +112,7 @@ public class Elements {
             JavascriptExecutor js = (JavascriptExecutor) PathAndVariable.driver;
             js.executeScript("arguments[0].scrollIntoView(true);", element);
             js.executeScript("arguments[0].click();", element);
+            Browser.take_screenshot(obj);
             Browser.generate_logs("Info", "Clicking on the element", obj);
         } catch (Exception e) {
             PathAndVariable.error = "Exception while clicking element  " + obj + " Exception-" + e;

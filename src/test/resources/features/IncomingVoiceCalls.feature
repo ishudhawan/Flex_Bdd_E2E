@@ -12,22 +12,6 @@ Feature:Incoming Voice Calls
     And I save value in "JSON" response tag "phone_number__2" to variable "From"
 
   @incoming-voice @api
-  Scenario: Making agent available
-    Given I open the web window
-    And I open the url "flex"
-    And I wait for "username"
-    And I input text "idhawan+1@twilio.com" to object "username"
-    And I input text "testdemo" to object "password"
-    And I click on "signin"
-    And I wait for "agent"
-    And I click on "agent"
-    And I wait for "offline"
-    And I verify non existence of object "call_msg"
-    And I click on "offline"
-    And I click on "available"
-    And I click on "close_notification"
-
-  @incoming-voice @api
   Scenario: Make Incoming Call API
     Given I set api with URL "twilio"
     And I add service "make_call" with URL and replace "account" to set API endpoint
@@ -48,6 +32,22 @@ Feature:Incoming Voice Calls
     And I save response status to variable "Response_status" and response body to variable "Response_body"
     And I verify value of "Response_status" to be "200"
     And I validate response tag "status" with value "in-progress"
+
+  @incoming-voice @api
+  Scenario: Making agent available
+    Given I open the web window
+    And I open the url "flex"
+    And I wait for "username"
+    And I input text "idhawan+1@twilio.com" to object "username"
+    And I input text "testdemo" to object "password"
+    And I click on "signin"
+    And I wait for "agent"
+    And I click on "agent"
+    And I wait for "offline"
+    And I verify non existence of object "call_msg"
+    And I click on "offline"
+    And I click on "available"
+    And I click on "close_notification"
 
   @incoming-voice @api
   Scenario: Call Accept and Call Transfer
