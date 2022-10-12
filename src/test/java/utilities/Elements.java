@@ -133,6 +133,8 @@ public class Elements {
             options.addArguments("use-fake-ui-for-media-stream");
             options.addArguments("--allow-insecure-localhost");
             options.addArguments("Headless");
+            options.setCapability("name" , "E2E test");
+            options.setCapability("enableVNC" , true);
             if (System.getProperty("runMode").equals ("jenkins")){
                 PathAndVariable.driver2 = new RemoteWebDriver(new URL("http://outside:notS2-sekwrL@vqe-grid-selenium.stage-us1.twilio.com:4444/wd/hub"), options);
             }
