@@ -122,7 +122,6 @@ public class Elements {
 
     public static void new_agent_login() {
         try {
-            WebDriverManager.chromedriver().setup();
             HashMap<String, Object> chromePrefs = new HashMap<>();
             chromePrefs.put("profile.default_content_settings.popups", 0);
             chromePrefs.put("download.default_directory", PathAndVariable.Downloads);
@@ -139,6 +138,7 @@ public class Elements {
                 PathAndVariable.driver2 = new RemoteWebDriver(new URL("http://outside:notS2-sekwrL@vqe-grid-selenium.stage-us1.twilio.com:4444/wd/hub"), options);
             }
             else{
+                WebDriverManager.chromedriver().setup();
                 PathAndVariable.driver2 = new ChromeDriver(options);
             }
             PathAndVariable.driver2.manage().window().maximize();
