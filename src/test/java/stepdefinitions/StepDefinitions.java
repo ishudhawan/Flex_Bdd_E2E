@@ -42,7 +42,7 @@ public class StepDefinitions {
             PathAndVariable.email = System.getProperty("email");
             PathAndVariable.prop_dir = PathAndVariable.path + "/properties/" + PathAndVariable.env + ".properties";
             if (PathAndVariable.env.toLowerCase().contains("flex")) {
-                PathAndVariable.xpath_dir = PathAndVariable.path + "/properties/" + "xpath_Flex.properties";
+                PathAndVariable.xpath_dir = PathAndVariable.path + "/properties/" + "Flex_xpath.properties";
             }
             if (PathAndVariable.tags == null)
                 PathAndVariable.tags = "Test run";

@@ -31,7 +31,7 @@ public class APISetUp {
     public static void addService(String service, String value) {
         try {
             if (PathAndVariable.env.toLowerCase().contains("flex")) {
-                PathAndVariable.fr = new FileReader(PathAndVariable.path + "/properties/Service_Flex.properties");
+                PathAndVariable.fr = new FileReader(PathAndVariable.path + "/properties/Flex_Service.properties");
             }
             PathAndVariable.prop.load(PathAndVariable.fr);
             if (PathAndVariable.prop.getProperty(service).contains("$") && !value.isEmpty()) {
