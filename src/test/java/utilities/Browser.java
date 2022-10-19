@@ -123,4 +123,16 @@ public class Browser {
             Browser.generate_logs("Error", "Unable to take screenshot", name);
         }
     }
+
+    public static void take_screenshot2(String name) {
+        try {
+            if (PathAndVariable.driver2 != null) {
+                if (PathAndVariable.driver2 instanceof TakesScreenshot) {
+                    PathAndVariable.scenario_name.attach(((TakesScreenshot) PathAndVariable.driver2).getScreenshotAs(OutputType.BYTES), "image/png", "Screenshot");
+                }
+            }
+        } catch (Exception e) {
+            Browser.generate_logs("Error", "Unable to take screenshot", name);
+        }
+    }
 }

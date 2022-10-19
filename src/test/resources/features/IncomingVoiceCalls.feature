@@ -49,7 +49,7 @@ Feature:Incoming Voice Calls
     And I click on "available"
     And I click on "close_notification"
     And I click on "accept_call"
-    And I force a sleep for "10" seconds
+    And I force a sleep for "4" seconds
     And A different agent logs in
     And I force a sleep for "3" seconds
     And I wait for "transfer_call"
