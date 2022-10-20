@@ -11,7 +11,7 @@ Feature:Incoming Voice Calls negative testing
     And I save value in "JSON" response tag "phone_number__1" to variable "To"
 
   @incoming-voice-negative @api1
-  Scenario Outline: Incoming Call API verification for FROM attribute
+  Scenario Outline: Incoming Call API verification for FROM attribute with value <value>
     Given I set api with URL "twilio"
     And I add service "make_call" with URL and replace "account" to set API endpoint
     And I get authentication username "username" and password "password" for API authentication
@@ -31,7 +31,7 @@ Feature:Incoming Voice Calls negative testing
       |                 | No 'From' number is specified                                                                                                                                                |
 
   @incoming-voice-negative @api1
-  Scenario Outline: Incoming Call API verification for TO attribute
+  Scenario Outline: Incoming Call API verification for TO attribute with value <value>
     Given I set api with URL "twilio"
     And I add service "make_call" with URL and replace "account" to set API endpoint
     And I get authentication username "username" and password "password" for API authentication
