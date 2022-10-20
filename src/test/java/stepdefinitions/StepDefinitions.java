@@ -62,12 +62,12 @@ public class StepDefinitions {
         if (!status.equalsIgnoreCase("Pass") && PathAndVariable.feature.equalsIgnoreCase(featureName[1]) && !PathAndVariable.feature.equals("")) {
             status = "Skip";
             LOGGER.info("================================================================================================\n");
-            LOGGER.info("                                      Skipping the scenario << " + scenario.getName() + " >> as the previous scenario failed");
+            LOGGER.info("              Skipping the scenario << " + scenario.getName() + " >> as the previous scenario failed");
             Assume.assumeTrue(false);
         } else if (!PathAndVariable.feature.equals("") && !PathAndVariable.feature.equalsIgnoreCase(featureName[1])) {
             status = "Pass";
             LOGGER.info("===========================================================================================================================\n");
-            LOGGER.info("                              Feature << " + PathAndVariable.feature.toUpperCase() + " >> execution ended");
+            LOGGER.info("                Feature << " + PathAndVariable.feature.toUpperCase() + " >> execution ended");
             PathAndVariable.feature = "";
             feature_check = 0;
         } else {
@@ -75,10 +75,10 @@ public class StepDefinitions {
         }
         if (feature_check == 0) {
             LOGGER.info("===========================================================================================================================");
-            LOGGER.info("                              Feature << " + featureName[1] + " >> execution started");
+            LOGGER.info("                Feature << " + featureName[1] + " >> execution started");
         }
         LOGGER.info("===========================================================================================================================\n");
-        LOGGER.info("                                     Scenario << " + scenario.getName() + " >> execution started");
+        LOGGER.info("           Scenario << " + scenario.getName() + " >> execution started");
         LOGGER.info("===========================================================================================================================\n");
     }
 
@@ -103,7 +103,7 @@ public class StepDefinitions {
         }
         if (!status.equals("Skip")) {
             LOGGER.info("===========================================================================================================================");
-            LOGGER.info("                                 Scenario << " + scenario.getName() + " >> execution ended with status " + status.toUpperCase());
+            LOGGER.info("      Scenario << " + scenario.getName() + " >> execution ended with status " + status.toUpperCase());
         }
         PathAndVariable.feature = featureName[1];
         indexSI++;
